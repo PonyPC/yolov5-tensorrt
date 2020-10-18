@@ -1,6 +1,7 @@
 import cv2
 import sys
 import argparse
+import pycuda.autoinit
 
 from Processor import Processor
 from Visualizer import Visualizer
@@ -28,7 +29,7 @@ def main():
     img = cv2.imread('inputs/{}'.format(args['image']))
 
     # inference
-    output = processor.detect(img) 
+    output = processor.detect([img*3]) 
     img = cv2.resize(img, (640, 640))
 
     # object visualization
